@@ -1,5 +1,9 @@
 package me.xSora.Main;
 
+import java.io.IOException;
+import java.net.URL;
+import java.util.Scanner;
+
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -33,6 +37,26 @@ public class Main extends JavaPlugin{
 	
 	
 	private void checkForUpdates() {
+		String onlineversion = null;
+		String localversion = this.getDescription().getVersion();
+		try {
+			   URL url = new URL("https://raw.githubusercontent.com/xSora/LeveledMobs/master/version.txt");
+			   Scanner sc = new Scanner(url.openStream());
+			   onlineversion = sc.next();
+			   sc.close();
+			}
+			catch(IOException ex) {
+				   ex.printStackTrace();
+			}
+		
+		if(onlineversion != null) {
+			if(onlineversion != localversion) {
+				System.err.println("A new Version of LeveledMobs is available!");
+				System.err.println("Installed Version: "+localversion+" | Latest: "+onlineversion);
+			}
+		}else {
+			System.err.println("Update Check Failed!");
+		}
 		
 	}
 	

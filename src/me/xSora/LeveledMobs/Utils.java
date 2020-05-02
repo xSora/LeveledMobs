@@ -29,11 +29,12 @@ public class Utils {
 		RawMessage = FileManager.config.getString("Configuration.DropMoney.Message");
 	}
 	
-	@SuppressWarnings("deprecation")
 	public static String sendKilledMessage(int level, Entity et, double money) {
 		String MSG_Add_Color = RawMessage.replaceAll("&", "§");
 		String MSG_Replace_Level = MSG_Add_Color.replaceAll("%level%", ""+level);
-		String MSG_Replace_MobName = MSG_Replace_Level.replaceAll("%mobname%", ""+et.getType().getName());
+		String name = et.getType().name().toLowerCase();
+		String MobName = name.substring(0, 1).toUpperCase() + name.substring(1);
+		String MSG_Replace_MobName = MSG_Replace_Level.replaceAll("%mobname%", MobName);
 		String MSG_Replace_Amount = MSG_Replace_MobName.replaceAll("%amount%", money+"");
 		String FinalMessage = MSG_Replace_Amount;
 		
@@ -84,4 +85,11 @@ public class Utils {
         return base * (level/5);
     }
 	
+    public static double GenerateReward(double min, double max) {
+    	Random rand = new SecureRandom();
+    	double rng = min + (max - min) * rand.nextDouble();
+    	double value = Math.round(rng*1e2)/1e2;
+    	return value;
+    }
+    
 }
