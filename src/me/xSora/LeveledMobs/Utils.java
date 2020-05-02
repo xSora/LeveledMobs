@@ -15,6 +15,8 @@ public class Utils {
 	private static int MAX_LEVEL;
 	private static int MAGIC_NUMBER;
 	
+	private static double LevelMultiplier;
+	
 	private static String RawMessage;
 	
 	public static void Init() {
@@ -26,7 +28,10 @@ public class Utils {
 		MAX_LEVEL = FileManager.config.getInt("Configuration.Max_Level");			//DEF = 100
 		MAGIC_NUMBER = FileManager.config.getInt("Configuration.Magic_Number");		//DEF = 150
 		
+		LevelMultiplier = FileManager.config.getDouble("Configuration.DropMoney.LevelMultiplier");
+		
 		RawMessage = FileManager.config.getString("Configuration.DropMoney.Message");
+		
 	}
 	
 	public static String sendKilledMessage(int level, Entity et, double money) {
@@ -85,11 +90,15 @@ public class Utils {
         return base * (level/5);
     }
 	
-    public static double GenerateReward(double min, double max) {
+    public static double GenerateReward(double min, double max, int level) {
     	Random rand = new SecureRandom();
     	double rng = min + (max - min) * rand.nextDouble();
     	double value = Math.round(rng*1e2)/1e2;
-    	return value;
+    	
+    	double multiplier = Math.round(level * (LevelMultiplier / 100*1e2)/1e2);
+    	
+    	
+    	return value + multiplier;
     }
     
 }

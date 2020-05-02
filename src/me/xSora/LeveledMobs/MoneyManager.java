@@ -19,7 +19,7 @@ public class MoneyManager {
 	
 	public static void Init() {
         if (!setupEconomy()) {
-            Main.plugin.getLogger().severe("Disabled due to no Vault dependency found!");
+            System.err.println("Disabled due to no Vault dependency found!");
             enabled = false;
             Bukkit.getPluginManager().disablePlugin(Main.plugin);
             return;
@@ -52,7 +52,7 @@ public class MoneyManager {
 		//Calculate Money
 		EntityType ett = et.getType();
 		
-		double money = Utils.GenerateReward(getMin(ett), getMax(ett));
+		double money = Utils.GenerateReward(getMin(ett), getMax(ett), level);
 		
 		
 		addMoney(p, money);

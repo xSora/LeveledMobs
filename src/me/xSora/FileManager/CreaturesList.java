@@ -11,7 +11,6 @@ public class CreaturesList {
 	public static List<EntityType> leveledMobs = new ArrayList<>();
 	
 	public static void GenerateArray() {
-		//Get Every Mob in Minecraft
 		
 		//All Mobs
 		leveledMobs.add(EntityType.BLAZE);
@@ -52,7 +51,7 @@ public class CreaturesList {
 			String Name = et.name().toUpperCase();
 			FileManager.config.set("Creatures."+Name+".Enabled", true);
 			FileManager.config.set("Creatures."+Name+".Min", 0.1);
-			FileManager.config.set("Creatures."+Name+".Max", 10);
+			FileManager.config.set("Creatures."+Name+".Max", 1);
 			
 		}
 		

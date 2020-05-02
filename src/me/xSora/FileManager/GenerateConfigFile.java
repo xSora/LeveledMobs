@@ -23,8 +23,7 @@ public class GenerateConfigFile {
 		
 		//Money drop (REQUIRES VAULT)
 		FileManager.config.set("Configuration.DropMoney.Enabled", true);				//Enable Money Drop
-		FileManager.config.set("Configuration.DropMoney.Boss.Min", 50);					//Min Money drop for Bosses
-		FileManager.config.set("Configuration.DropMoney.Boss.Max", 100);				//Max Money drop for Bosses
+		FileManager.config.set("Configuration.DropMoney.LevelMultiplier", 1.5);			//Increase in Percent
 		FileManager.config.set("Configuration.DropMoney.Message", "&fYou defeated a &cLevel %level% &b%mobname% &fand got &a%amount%$ &ffor it!");					//Message for Killing
 		
 		FileManager.SaveConfig();
