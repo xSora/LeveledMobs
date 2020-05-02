@@ -1,71 +1,103 @@
 package me.xSora.LeveledMobs;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.attribute.Attributable;
 import org.bukkit.attribute.Attribute;
-import org.bukkit.craftbukkit.libs.org.apache.commons.lang3.EnumUtils;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntitySpawnEvent;
+import org.bukkit.event.entity.CreatureSpawnEvent;
+import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 
+import me.xSora.FileManager.CreaturesList;
 import me.xSora.FileManager.FileManager;
 
 public class MobSpawnListener implements Listener{
 	
 	private static boolean show_level;
 	
-	private static List<EntityType> leveledMobs = new ArrayList<>();
+	//Spawn Reasons
+	private static boolean reason_custom;
+	private static boolean reason_default;
+	private static boolean reason_dispenseregg;
+	private static boolean reason_egg;
+	private static boolean reason_natural;
+	private static boolean reason_raid;
+	private static boolean reason_spawner;
 	
 	public static void Init() {
 		
-		show_level = FileManager.config.getBoolean("Configuration.Show_Level");
+		show_level = FileManager.config.getBoolean("Configuration.ShowLevel");
+		//Spawn Reasons
 		
-		//Load Array
+		reason_custom = FileManager.config.getBoolean("Configuration.SpawnReason.Custom");
+		reason_default = FileManager.config.getBoolean("Configuration.SpawnReason.Default");
+		reason_dispenseregg = FileManager.config.getBoolean("Configuration.SpawnReason.Dispenser_Egg");
+		reason_egg = FileManager.config.getBoolean("Configuration.SpawnReason.Spawn_Egg");
+		reason_natural = FileManager.config.getBoolean("Configuration.SpawnReason.Natural");
+		reason_raid = FileManager.config.getBoolean("Configuration.SpawnReason.Raid");
+		reason_spawner = FileManager.config.getBoolean("Configuration.SpawnReason.Spawner");
 		
-		ArrayList<String> mob_string = new ArrayList<>(FileManager.config.getStringList("LeveledMobs"));
-		
-		for(int i = 0; i < mob_string.size(); i++) {
-			String MobName = mob_string.get(i);
-			if (EnumUtils.isValidEnum(EntityType.class, MobName)) {
-				EntityType et = EntityType.valueOf(MobName);
-				leveledMobs.add(et);
-			}else {
-				System.err.println("Unknown Mob Type '"+MobName+"'");
-			}
-		}
 	}
 	
 	@EventHandler
-	public void onMobSpawn(EntitySpawnEvent ev) {
-		Entity et = ev.getEntity();
-		if(leveledMobs.contains(ev.getEntityType())) {
+	public void onMobSpawn(CreatureSpawnEvent ev) {
+		//Check Spawn Reasons
+		SpawnReason sr = ev.getSpawnReason();
+		
+		//Reason: Custom
+		if(sr == SpawnReason.CUSTOM && reason_custom) {
+			SpawnMob(ev.getEntity());
+		}
+		
+		//Reason: Default
+		if(sr == SpawnReason.DEFAULT && reason_default) {
+			SpawnMob(ev.getEntity());
+		}
+		
+		//Reason: Egg from Dispenser
+		if(sr == SpawnReason.DISPENSE_EGG && reason_dispenseregg) {
+			SpawnMob(ev.getEntity());
+		}
+		
+		//Reason: Spawn Egg
+		if(sr == SpawnReason.EGG && reason_egg) {
+			SpawnMob(ev.getEntity());
+		}
+		
+		//Reason: Natural
+		if(sr == SpawnReason.NATURAL && reason_natural) {
+			SpawnMob(ev.getEntity());
+		}
+		
+		//Reason: Raid
+		if(sr == SpawnReason.RAID && reason_raid) {
+			SpawnMob(ev.getEntity());
+		}
+		
+		//Reason: Spawner
+		if(sr == SpawnReason.SPAWNER && reason_spawner) {
+			SpawnMob(ev.getEntity());
+		}
+	}
+	
+	
+	private void SpawnMob(Entity et) {
+		if(CreaturesList.leveledMobs.contains(et.getType())) {
 			//if Mob is on the List
 			
-			World w = ev.getLocation().getWorld();
+			World w = et.getLocation().getWorld();
 			Location spawn = w.getSpawnLocation();
 			
 			double distance = et.getLocation().distance(spawn);
 			
 			int level = Utils.CalculateLevel(distance);
 			
-			set(et, level);
-			
+			setLevel(et, level);
+			setStats(et, level);
 		}
-		
-	}
-	
-	public void set(Entity et, int level) {
-		//Setter
-		setLevel(et, level);
-		setStats(et, level);
-		setDrops(et, level);
 	}
 	
 	private void setLevel(Entity et, int level) {
@@ -113,64 +145,6 @@ public class MobSpawnListener implements Listener{
 		//Set Armor Toughness
 		double resistance = ((Attributable) et).getAttribute(Attribute.GENERIC_ARMOR_TOUGHNESS).getBaseValue();
 		((Attributable) et).getAttribute(Attribute.GENERIC_ARMOR_TOUGHNESS).setBaseValue(Utils.calc(resistance, level));
-	}
-	
-	private void setDrops(Entity et, int level) {
-		//Increase Loot every 10 Levels
-		if(level > 0 && level <= 10) {
-			//Lootlevel 1
-			LootGenerator.set(1);
-		}
-		
-		if(level > 10 && level <= 20) {
-			//Lootlevel 2
-			LootGenerator.set(2);
-		}
-		
-		if(level > 20 && level <= 30) {
-			//Lootlevel 3
-			LootGenerator.set(3);
-		}
-		
-		if(level > 30 && level <= 40) {
-			//Lootlevel 4
-			LootGenerator.set(4);
-		}
-		
-		if(level > 40 && level <= 50) {
-			//Lootlevel 5
-			LootGenerator.set(5);
-		}
-		
-		if(level > 50 && level <= 60) {
-			//Lootlevel 6
-			LootGenerator.set(6);
-		}
-		
-		if(level > 60 && level <= 70) {
-			//Lootlevel 7
-			LootGenerator.set(7);
-		}
-		
-		if(level > 70 && level <= 80) {
-			//Lootlevel 8
-			LootGenerator.set(8);
-		}
-		
-		if(level > 80 && level <= 90) {
-			//Lootlevel 9
-			LootGenerator.set(9);
-		}
-		
-		if(level > 90 && level <= 100) {
-			//Lootlevel 10
-			LootGenerator.set(10);
-		}
-		
-		if(level > 100) {
-			//Lootlevel X Boss
-			LootGenerator.set(11);
-		}
 	}
 
 }

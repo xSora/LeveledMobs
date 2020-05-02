@@ -1,69 +1,35 @@
 package me.xSora.FileManager;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.bukkit.entity.EntityType;
-
 public class GenerateConfigFile {
 	
 	public static void GenerateConfig() {
 		//Set Utils
-		FileManager.config.set("Configuration.Max_Level", 100);
-		FileManager.config.set("Configuration.Magic_Number", 150);
+		FileManager.config.set("Configuration.Max_Level", 100);							//Max Mob Level
+		FileManager.config.set("Configuration.Magic_Number", 150);						//Used to Calculate Level Lower = Higher level
 		
 		//Set MobSpawnerListener
 		
-		FileManager.config.set("Configuration.Show_Level", true);
-		FileManager.config.set("Configuration.Bosses", true);
-		FileManager.config.set("Configuration.BossChance", 1000);
+		FileManager.config.set("Configuration.ShowLevel", true);						//Show Custom Level
+		FileManager.config.set("Configuration.Bosses", true);							//Enable Bosses Spawn
+		FileManager.config.set("Configuration.BossChance", 1000);						//Spawn Boss Chance (1:1000)
+		
+		FileManager.config.set("Configuration.SpawnReason.Custom", true);				//If Spawned from Plugin
+		FileManager.config.set("Configuration.SpawnReason.Default", true);				//Unknown Reason
+		FileManager.config.set("Configuration.SpawnReason.Dispenser_Egg", true);		//If Spawned from Dispenser
+		FileManager.config.set("Configuration.SpawnReason.Spawn_Egg", true);			//If Spawned by Spawn Egg
+		FileManager.config.set("Configuration.SpawnReason.Natural", true);				//If Spawned Naturally
+		FileManager.config.set("Configuration.SpawnReason.Raid", true);					//If Spawned by Raid
+		FileManager.config.set("Configuration.SpawnReason.Spawner", false);				//If Spawned by Spawner
+		
+		//Money drop (REQUIRES VAULT)
+		FileManager.config.set("Configuration.DropMoney.Enabled", true);				//Enable Money Drop
+		FileManager.config.set("Configuration.DropMoney.Boss.Min", 50);					//Min Money drop for Bosses
+		FileManager.config.set("Configuration.DropMoney.Boss.Max", 100);				//Max Money drop for Bosses
+		FileManager.config.set("Configuration.DropMoney.Message", "&fYou defeated a &cLevel %level% &b%mobname% &fand got &a%amount%$ &ffor it!");					//Message for Killing
 		
 		FileManager.SaveConfig();
 		
-		GenerateArray();
+		CreaturesList.GenerateArray();
 		
 	}
-	
-	
-	//Config
-	
-	public static void GenerateArray() {
-		
-		List<EntityType> list = new ArrayList<>();
-		
-		//All Allowed Mobs
-		list.add(EntityType.BLAZE);
-		list.add(EntityType.CREEPER);
-		list.add(EntityType.DROWNED);
-		list.add(EntityType.ENDERMITE);
-		list.add(EntityType.EVOKER);
-		list.add(EntityType.HUSK);
-		list.add(EntityType.PHANTOM);
-		list.add(EntityType.SHULKER);
-		list.add(EntityType.SILVERFISH);
-		list.add(EntityType.SKELETON);
-		list.add(EntityType.CAVE_SPIDER);
-		list.add(EntityType.SPIDER);
-		list.add(EntityType.STRAY);
-		list.add(EntityType.VEX);
-		list.add(EntityType.WITCH);
-		list.add(EntityType.WITHER_SKELETON);
-		list.add(EntityType.PIG_ZOMBIE);
-		list.add(EntityType.ZOMBIE);
-		list.add(EntityType.ZOMBIE_VILLAGER);
-		
-		
-		List<String> conv = new ArrayList<>();
-		
-		for (int i = 0; i < list.size(); i++) {
-			conv.add(list.get(i).name());
-			}
-		
-		
-		FileManager.config.set("LeveledMobs", conv);
-		
-		FileManager.SaveConfig();
-		
-	}
-
 }

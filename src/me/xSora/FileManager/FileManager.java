@@ -18,6 +18,8 @@ public class FileManager {
 		config = YamlConfiguration.loadConfiguration(configFile);
 		if(!configFile.exists()) {
 			GenerateConfigFile.GenerateConfig();
+		}else {
+			CreaturesList.LoadArray();
 		}
 	}
 	

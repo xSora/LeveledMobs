@@ -3,6 +3,8 @@ package me.xSora.LeveledMobs;
 import java.security.SecureRandom;
 import java.util.Random;
 
+import org.bukkit.entity.Entity;
+
 import me.xSora.FileManager.FileManager;
 
 public class Utils {
@@ -13,6 +15,8 @@ public class Utils {
 	private static int MAX_LEVEL;
 	private static int MAGIC_NUMBER;
 	
+	private static String RawMessage;
+	
 	public static void Init() {
 		//Load Data from Config
 		
@@ -21,8 +25,20 @@ public class Utils {
 		
 		MAX_LEVEL = FileManager.config.getInt("Configuration.Max_Level");			//DEF = 100
 		MAGIC_NUMBER = FileManager.config.getInt("Configuration.Magic_Number");		//DEF = 150
+		
+		RawMessage = FileManager.config.getString("Configuration.DropMoney.Message");
 	}
 	
+	@SuppressWarnings("deprecation")
+	public static String sendKilledMessage(int level, Entity et, double money) {
+		String MSG_Add_Color = RawMessage.replaceAll("&", "§");
+		String MSG_Replace_Level = MSG_Add_Color.replaceAll("%level%", ""+level);
+		String MSG_Replace_MobName = MSG_Replace_Level.replaceAll("%mobname%", ""+et.getType().getName());
+		String MSG_Replace_Amount = MSG_Replace_MobName.replaceAll("%amount%", money+"");
+		String FinalMessage = MSG_Replace_Amount;
+		
+		return FinalMessage;
+	}
 	
 	public static int CalculateLevel(double distance) {
 		
