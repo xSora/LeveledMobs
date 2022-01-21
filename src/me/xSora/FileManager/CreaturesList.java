@@ -13,36 +13,37 @@ public class CreaturesList {
 	public static void GenerateArray() {
 		
 		//All Mobs
-		leveledMobs.add(EntityType.BLAZE);
 		leveledMobs.add(EntityType.CAVE_SPIDER);
+		leveledMobs.add(EntityType.ENDERMAN);
+		leveledMobs.add(EntityType.PIGLIN);
+		leveledMobs.add(EntityType.SPIDER);
+		leveledMobs.add(EntityType.ZOMBIFIED_PIGLIN);
+		
+		leveledMobs.add(EntityType.BLAZE);
 		leveledMobs.add(EntityType.CREEPER);
 		leveledMobs.add(EntityType.DROWNED);
 		leveledMobs.add(EntityType.ELDER_GUARDIAN);
-		leveledMobs.add(EntityType.ENDER_DRAGON);
-		leveledMobs.add(EntityType.ENDERMAN);
 		leveledMobs.add(EntityType.ENDERMITE);
 		leveledMobs.add(EntityType.EVOKER);
 		leveledMobs.add(EntityType.GHAST);
-		leveledMobs.add(EntityType.GIANT);
 		leveledMobs.add(EntityType.GUARDIAN);
+		leveledMobs.add(EntityType.HOGLIN);
 		leveledMobs.add(EntityType.HUSK);
-		leveledMobs.add(EntityType.ILLUSIONER);
-		leveledMobs.add(EntityType.IRON_GOLEM);
 		leveledMobs.add(EntityType.MAGMA_CUBE);
 		leveledMobs.add(EntityType.PHANTOM);
-		leveledMobs.add(EntityType.PIG_ZOMBIE);
+		leveledMobs.add(EntityType.PIGLIN_BRUTE);
 		leveledMobs.add(EntityType.PILLAGER);
 		leveledMobs.add(EntityType.RAVAGER);
 		leveledMobs.add(EntityType.SHULKER);
 		leveledMobs.add(EntityType.SILVERFISH);
 		leveledMobs.add(EntityType.SKELETON);
 		leveledMobs.add(EntityType.SLIME);
-		leveledMobs.add(EntityType.SPIDER);
 		leveledMobs.add(EntityType.STRAY);
 		leveledMobs.add(EntityType.VEX);
 		leveledMobs.add(EntityType.VINDICATOR);
 		leveledMobs.add(EntityType.WITCH);
 		leveledMobs.add(EntityType.WITHER_SKELETON);
+		leveledMobs.add(EntityType.ZOGLIN);
 		leveledMobs.add(EntityType.ZOMBIE);
 		leveledMobs.add(EntityType.ZOMBIE_VILLAGER);
 		

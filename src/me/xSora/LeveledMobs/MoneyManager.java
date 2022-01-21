@@ -1,5 +1,7 @@
 package me.xSora.LeveledMobs;
 
+import java.util.logging.Level;
+
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Entity;
@@ -14,17 +16,13 @@ import net.milkbowl.vault.economy.Economy;
 public class MoneyManager {
 	
     private static Economy econ;
-    
-    private static boolean enabled;
 	
 	public static void Init() {
         if (!setupEconomy()) {
-            System.err.println("Disabled due to no Vault dependency found!");
-            enabled = false;
+        	Main.logger.log(Level.SEVERE, "Disabled due to no Vault dependency found!");
             Bukkit.getPluginManager().disablePlugin(Main.plugin);
             return;
         }
-        enabled = true;
 	}
 	
     private static boolean setupEconomy() {
@@ -41,9 +39,7 @@ public class MoneyManager {
     }
 	
 	public static void addMoney(Player p, double amount) {
-		if(enabled) {
-			econ.depositPlayer(p, amount);
-		}
+		econ.depositPlayer(p, amount);
 	}
 	
 	

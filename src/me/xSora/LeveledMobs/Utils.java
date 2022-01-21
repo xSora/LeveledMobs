@@ -2,35 +2,46 @@ package me.xSora.LeveledMobs;
 
 import java.security.SecureRandom;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 
+import me.xSora.FileManager.CreaturesList;
 import me.xSora.FileManager.FileManager;
 
 public class Utils {
-	
-	private static boolean bosses;
-	private static int bosschance;
-	
-	private static int MAX_LEVEL;
-	private static int MAGIC_NUMBER;
 	
 	private static double LevelMultiplier;
 	
 	private static String RawMessage;
 	
+	private static int spawn_distance_0_10;
+	private static int spawn_distance_10_20;
+	private static int spawn_distance_20_30;
+	private static int spawn_distance_30_40;
+	private static int spawn_distance_40_50;
+	private static int spawn_distance_50_60;
+	private static int spawn_distance_60_70;
+	private static int spawn_distance_70_80;
+	
 	public static void Init() {
 		//Load Data from Config
-		
-		bosses = FileManager.config.getBoolean("Configuration.Bosses");
-		bosschance = FileManager.config.getInt("Configuration.BossChance");
-		
-		MAX_LEVEL = FileManager.config.getInt("Configuration.Max_Level");			//DEF = 100
-		MAGIC_NUMBER = FileManager.config.getInt("Configuration.Magic_Number");		//DEF = 150
 		
 		LevelMultiplier = FileManager.config.getDouble("Configuration.DropMoney.LevelMultiplier");
 		
 		RawMessage = FileManager.config.getString("Configuration.DropMoney.Message");
+		
+		//Get Distance Limit
+		spawn_distance_0_10 = FileManager.config.getInt("Configuration.MaxSpawnDistance.Level_0_10");
+		spawn_distance_10_20 = FileManager.config.getInt("Configuration.MaxSpawnDistance.Level_10_20");
+		spawn_distance_20_30 = FileManager.config.getInt("Configuration.MaxSpawnDistance.Level_20_30");
+		spawn_distance_30_40 = FileManager.config.getInt("Configuration.MaxSpawnDistance.Level_30_40");
+		spawn_distance_40_50 = FileManager.config.getInt("Configuration.MaxSpawnDistance.Level_40_50");
+		spawn_distance_50_60 = FileManager.config.getInt("Configuration.MaxSpawnDistance.Level_50_60");
+		spawn_distance_60_70 = FileManager.config.getInt("Configuration.MaxSpawnDistance.Level_60_70");
+		spawn_distance_70_80 = FileManager.config.getInt("Configuration.MaxSpawnDistance.Level_70_80");
+		
 		
 	}
 	
@@ -46,49 +57,92 @@ public class Utils {
 		return FinalMessage;
 	}
 	
-	public static int CalculateLevel(double distance) {
+	public static int CalculateLevel(Entity et) {
 		
-		int dist = (int) Math.round(distance);
+		int rng = generateRandom(0,100);
+		int distance = (int) et.getWorld().getSpawnLocation().distance(et.getLocation());
 		
-		int max = 5;
-		int min = 1;
-		
-		boolean randomizer = false;
-		
-		Random rand = new SecureRandom();
-		int rng = rand.nextInt(max - min + 1) + min;
-		
-		int calc_level = 0;
-		
-		if(randomizer) {
-			calc_level = (dist / MAGIC_NUMBER) + rng;
-		}else {
-			calc_level = (dist / MAGIC_NUMBER) - rng;
-		}
-		
-		if(calc_level <= 0) {
-			calc_level = 1;
-		}
-		
-		if(calc_level > MAX_LEVEL) {
-			calc_level = MAX_LEVEL;
-		}
-		if(bosses){
-			Random brand = new SecureRandom();
-			int bng = brand.nextInt(bosschance - 1 + 1) + min;
-			
-			if(bng == (bosschance / 2)) {
-				calc_level = 255;
+		//Nested IFs of Hell
+		if(distance > spawn_distance_0_10) {
+			if(rng <= 10) {
+				// X Percent Change
+				
+			}else if(rng > 10 && rng <= 20) {
+				
+				
+			}else if(rng > 20 && rng <= 30) {
+				
+			}else if(rng > 30 && rng <= 40) {
+				
+			}else if(rng > 40 && rng <= 50) {
+				
+			}else if(rng > 50 && rng <= 60) {
+				
+			}else if(rng > 60 && rng <= 70) {
+				
+			}else if(rng > 70 && rng <= 80) {
+				
+			}else if(rng > 80 && rng <= 90) {
+				
+			}else if(rng > 90 && rng < 100) {
+				
+			}else if(rng == 100) {
+				//Spawn Boss
 			}
 			
+		}else if(distance > spawn_distance_0_10) {
+			
+		}else if(distance > spawn_distance_10_20) {
+			
+		}else if(distance > spawn_distance_20_30) {
+			
+		}else if(distance > spawn_distance_30_40) {
+			
+		}else if(distance > spawn_distance_40_50) {
+			
+		}else if(distance > spawn_distance_50_60) {
+			
+		}else if(distance > spawn_distance_60_70) {
+			
+		}else if(distance > spawn_distance_70_80) {
+			
 		}
-		return calc_level;
 		
+		return 0;
+		
+		
+	}
+	
+	public static int generateRandom(int min, int max) {
+		return ThreadLocalRandom.current().nextInt(min, max + 1);
 	}
 	
     public static double calc(double base, int level) {
         return base * (level/5);
     }
+    
+    public static EntityType getEntityByString(String et) {
+        for (EntityType type : EntityType.values()) {
+            if(type.name().equalsIgnoreCase(et)) {
+                if(CreaturesList.leveledMobs.contains(type)) {
+                	return type;
+                }else {
+                	return null;
+                }
+            }
+        }
+		return null;
+    }
+    
+    public static int convertStringToInt(String str) {
+    	try {
+    		return Integer.parseInt(str);
+ 		}
+ 		catch (Exception ex) {
+ 			return 0;
+ 		}
+    }
+    
 	
     public static double GenerateReward(double min, double max, int level) {
     	Random rand = new SecureRandom();

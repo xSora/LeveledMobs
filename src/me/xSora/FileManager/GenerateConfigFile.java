@@ -3,23 +3,22 @@ package me.xSora.FileManager;
 public class GenerateConfigFile {
 	
 	public static void GenerateConfig() {
-		//Set Utils
-		FileManager.config.set("Configuration.Max_Level", 100);							//Max Mob Level
-		FileManager.config.set("Configuration.Magic_Number", 150);						//Used to Calculate Level Lower = Higher level
+		//Spawn Limiter
+		FileManager.config.set("Configuration.MaxSpawnDistance.Level_0_10", 500);
+		FileManager.config.set("Configuration.MaxSpawnDistance.Level_10_20", 1000);
+		FileManager.config.set("Configuration.MaxSpawnDistance.Level_20_30", 2000);
+		FileManager.config.set("Configuration.MaxSpawnDistance.Level_30_40", 3000);
+		FileManager.config.set("Configuration.MaxSpawnDistance.Level_40_50", 5000);
+		FileManager.config.set("Configuration.MaxSpawnDistance.Level_50_60", 7000);
+		FileManager.config.set("Configuration.MaxSpawnDistance.Level_60_70", 9000);
+		FileManager.config.set("Configuration.MaxSpawnDistance.Level_70_80", 1100);
+		
 		
 		//Set MobSpawnerListener
 		
 		FileManager.config.set("Configuration.ShowLevel", true);						//Show Custom Level
 		FileManager.config.set("Configuration.Bosses", true);							//Enable Bosses Spawn
 		FileManager.config.set("Configuration.BossChance", 1000);						//Spawn Boss Chance (1:1000)
-		
-		FileManager.config.set("Configuration.SpawnReason.Custom", true);				//If Spawned from Plugin
-		FileManager.config.set("Configuration.SpawnReason.Default", true);				//Unknown Reason
-		FileManager.config.set("Configuration.SpawnReason.Dispenser_Egg", true);		//If Spawned from Dispenser
-		FileManager.config.set("Configuration.SpawnReason.Spawn_Egg", true);			//If Spawned by Spawn Egg
-		FileManager.config.set("Configuration.SpawnReason.Natural", true);				//If Spawned Naturally
-		FileManager.config.set("Configuration.SpawnReason.Raid", true);					//If Spawned by Raid
-		FileManager.config.set("Configuration.SpawnReason.Spawner", false);				//If Spawned by Spawner
 		
 		//Money drop (REQUIRES VAULT)
 		FileManager.config.set("Configuration.DropMoney.Enabled", true);				//Enable Money Drop

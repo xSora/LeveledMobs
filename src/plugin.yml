@@ -1,4 +1,11 @@
 name: LeveledMobs
 version: 0.1
+api-version: 1.18
+description: Adds Level to Minecraft Mobs
 author: xSora
 main: me.xSora.Main.Main
+depend: [Vault]
+commands:
+     leveledmobs:
+          description: LeveledMobs Main Command
+          usage: /leveledmobs
