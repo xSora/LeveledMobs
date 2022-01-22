@@ -64,53 +64,139 @@ public class Utils {
 		
 		//Nested IFs of Hell
 		if(distance > spawn_distance_0_10) {
-			if(rng <= 10) {
-				// X Percent Change
-				
-			}else if(rng > 10 && rng <= 20) {
-				
-				
-			}else if(rng > 20 && rng <= 30) {
-				
-			}else if(rng > 30 && rng <= 40) {
-				
-			}else if(rng > 40 && rng <= 50) {
-				
-			}else if(rng > 50 && rng <= 60) {
-				
-			}else if(rng > 60 && rng <= 70) {
-				
-			}else if(rng > 70 && rng <= 80) {
-				
-			}else if(rng > 80 && rng <= 90) {
-				
-			}else if(rng > 90 && rng < 100) {
-				
-			}else if(rng == 100) {
-				//Spawn Boss
+			// Max Level 1 - 30
+			if(rng <= 60) {
+				//60% Chance
+				return (1 + generateRandom(0, 9));
+			}else if(rng > 60 && rng <= 85) {
+				//25% Chance
+				return (11 + generateRandom(0, 9));
+			}else if(rng > 85 && rng <= 99) {
+				//14% Chance
+				return (21 + generateRandom(0, 9));
+			}else if (rng == 100) {
+				//Spawn Boss # 1% Chance
+				return 100;
 			}
-			
 		}else if(distance > spawn_distance_0_10) {
-			
+			// Max Level 11 - 40
+			if(rng <= 60) {
+				//60% Chance
+				return (11 + generateRandom(0, 9));
+			}else if(rng > 60 && rng <= 85) {
+				//25% Chance
+				return (21 + generateRandom(0, 9));
+			}else if(rng > 85 && rng <= 99) {
+				//14% Chance
+				return (31 + generateRandom(0, 9));
+			}else if (rng == 100) {
+				//Spawn Boss # 1% Chance
+				return 100;
+			}
 		}else if(distance > spawn_distance_10_20) {
-			
+			// Max Level 21 - 50
+			if(rng <= 60) {
+				//60% Chance
+				return (21 + generateRandom(0, 9));
+			}else if(rng > 60 && rng <= 85) {
+				//25% Chance
+				return (31 + generateRandom(0, 9));
+			}else if(rng > 85 && rng <= 99) {
+				//14% Chance
+				return (41 + generateRandom(0, 9));
+			}else if (rng == 100) {
+				//Spawn Boss # 1% Chance
+				return 100;
+			}
 		}else if(distance > spawn_distance_20_30) {
-			
+			// Max Level 31 - 60
+			if(rng <= 60) {
+				//60% Chance
+				return (31 + generateRandom(0, 9));
+			}else if(rng > 60 && rng <= 85) {
+				//25% Chance
+				return (41 + generateRandom(0, 9));
+			}else if(rng > 85 && rng <= 99) {
+				//14% Chance
+				return (51 + generateRandom(0, 9));
+			}else if (rng == 100) {
+				//Spawn Boss # 1% Chance
+				return 100;
+			}
 		}else if(distance > spawn_distance_30_40) {
-			
+			// Max Level 41 - 70
+			if(rng <= 60) {
+				//60% Chance
+				return (41 + generateRandom(0, 9));
+			}else if(rng > 60 && rng <= 85) {
+				//25% Chance
+				return (51 + generateRandom(0, 9));
+			}else if(rng > 85 && rng <= 99) {
+				//14% Chance
+				return (61 + generateRandom(0, 9));
+			}else if (rng == 100) {
+				//Spawn Boss # 1% Chance
+				return 100;
+			}
 		}else if(distance > spawn_distance_40_50) {
-			
+			// Max Level 51 - 80
+			if(rng <= 60) {
+				//60% Chance
+				return (51 + generateRandom(0, 9));
+			}else if(rng > 60 && rng <= 85) {
+				//25% Chance
+				return (61 + generateRandom(0, 9));
+			}else if(rng > 85 && rng <= 99) {
+				//14% Chance
+				return (71 + generateRandom(0, 9));
+			}else if (rng == 100) {
+				//Spawn Boss # 1% Chance
+				return 100;
+			}
 		}else if(distance > spawn_distance_50_60) {
-			
+			// Max Level 61 - 90
+			if(rng <= 60) {
+				//60% Chance
+				return (61 + generateRandom(0, 9));
+			}else if(rng > 60 && rng <= 85) {
+				//25% Chance
+				return (71 + generateRandom(0, 9));
+			}else if(rng > 85 && rng <= 99) {
+				//14% Chance
+				return (81 + generateRandom(0, 9));
+			}else if (rng == 100) {
+				//Spawn Boss # 1% Chance
+				return 100;
+			}
 		}else if(distance > spawn_distance_60_70) {
-			
+			// Max Level 71 - 99
+			if(rng <= 60) {
+				//60% Chance
+				return (71 + generateRandom(0, 9));
+			}else if(rng > 60 && rng <= 85) {
+				//25% Chance
+				return (81 + generateRandom(0, 9));
+			}else if(rng > 85 && rng <= 99) {
+				//14% Chance
+				return (91 + generateRandom(0, 9));
+			}else if (rng == 100) {
+				//Spawn Boss # 1% Chance
+				return 100;
+			}
 		}else if(distance > spawn_distance_70_80) {
-			
+			// Max Level 81 - 99
+			if(rng <= 60) {
+				//60% Chance
+				return (81 + generateRandom(0, 9));
+			}else if(rng > 60 && rng <= 99) {
+				//39% Chance
+				return (91 + generateRandom(0, 9));
+			}else if (rng == 100) {
+				//Spawn Boss # 1% Chance
+				return 100;
+			}
 		}
-		
 		return 0;
-		
-		
 	}
 	
 	public static int generateRandom(int min, int max) {
