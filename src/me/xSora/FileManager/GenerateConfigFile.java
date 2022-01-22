@@ -4,14 +4,14 @@ public class GenerateConfigFile {
 	
 	public static void GenerateConfig() {
 		//Spawn Limiter
-		FileManager.config.set("Configuration.MaxSpawnDistance.Level_0_10", 500);
-		FileManager.config.set("Configuration.MaxSpawnDistance.Level_10_20", 1000);
-		FileManager.config.set("Configuration.MaxSpawnDistance.Level_20_30", 2000);
-		FileManager.config.set("Configuration.MaxSpawnDistance.Level_30_40", 3000);
-		FileManager.config.set("Configuration.MaxSpawnDistance.Level_40_50", 5000);
-		FileManager.config.set("Configuration.MaxSpawnDistance.Level_50_60", 7000);
-		FileManager.config.set("Configuration.MaxSpawnDistance.Level_60_70", 9000);
-		FileManager.config.set("Configuration.MaxSpawnDistance.Level_70_80", 1100);
+		FileManager.config.set("Configuration.MaxSpawnDistance.Level_01_30", 500);
+		FileManager.config.set("Configuration.MaxSpawnDistance.Level_11_40", 1000);
+		FileManager.config.set("Configuration.MaxSpawnDistance.Level_21_50", 2000);
+		FileManager.config.set("Configuration.MaxSpawnDistance.Level_31_60", 3000);
+		FileManager.config.set("Configuration.MaxSpawnDistance.Level_41_70", 5000);
+		FileManager.config.set("Configuration.MaxSpawnDistance.Level_51_80", 7000);
+		FileManager.config.set("Configuration.MaxSpawnDistance.Level_61_90", 9000);
+		FileManager.config.set("Configuration.MaxSpawnDistance.Level_71_99", 1100);
 		
 		
 		//Set MobSpawnerListener

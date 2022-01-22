@@ -16,14 +16,14 @@ public class Utils {
 	
 	private static String RawMessage;
 	
-	private static int spawn_distance_0_10;
-	private static int spawn_distance_10_20;
-	private static int spawn_distance_20_30;
-	private static int spawn_distance_30_40;
-	private static int spawn_distance_40_50;
-	private static int spawn_distance_50_60;
-	private static int spawn_distance_60_70;
-	private static int spawn_distance_70_80;
+	private static int Level_01_30;
+	private static int Level_11_40;
+	private static int Level_21_50;
+	private static int Level_31_60;
+	private static int Level_41_70;
+	private static int Level_51_80;
+	private static int Level_61_90;
+	private static int Level_71_99;
 	
 	public static void Init() {
 		//Load Data from Config
@@ -33,14 +33,14 @@ public class Utils {
 		RawMessage = FileManager.config.getString("Configuration.DropMoney.Message");
 		
 		//Get Distance Limit
-		spawn_distance_0_10 = FileManager.config.getInt("Configuration.MaxSpawnDistance.Level_0_10");
-		spawn_distance_10_20 = FileManager.config.getInt("Configuration.MaxSpawnDistance.Level_10_20");
-		spawn_distance_20_30 = FileManager.config.getInt("Configuration.MaxSpawnDistance.Level_20_30");
-		spawn_distance_30_40 = FileManager.config.getInt("Configuration.MaxSpawnDistance.Level_30_40");
-		spawn_distance_40_50 = FileManager.config.getInt("Configuration.MaxSpawnDistance.Level_40_50");
-		spawn_distance_50_60 = FileManager.config.getInt("Configuration.MaxSpawnDistance.Level_50_60");
-		spawn_distance_60_70 = FileManager.config.getInt("Configuration.MaxSpawnDistance.Level_60_70");
-		spawn_distance_70_80 = FileManager.config.getInt("Configuration.MaxSpawnDistance.Level_70_80");
+		Level_01_30 = FileManager.config.getInt("Configuration.MaxSpawnDistance.Level_01_30");
+		Level_11_40 = FileManager.config.getInt("Configuration.MaxSpawnDistance.Level_11_40");
+		Level_21_50 = FileManager.config.getInt("Configuration.MaxSpawnDistance.Level_21_50");
+		Level_31_60 = FileManager.config.getInt("Configuration.MaxSpawnDistance.Level_31_60");
+		Level_41_70 = FileManager.config.getInt("Configuration.MaxSpawnDistance.Level_41_70");
+		Level_51_80 = FileManager.config.getInt("Configuration.MaxSpawnDistance.Level_51_80");
+		Level_61_90 = FileManager.config.getInt("Configuration.MaxSpawnDistance.Level_61_90");
+		Level_71_99 = FileManager.config.getInt("Configuration.MaxSpawnDistance.Level_71_99");
 		
 		
 	}
@@ -63,7 +63,7 @@ public class Utils {
 		int distance = (int) et.getWorld().getSpawnLocation().distance(et.getLocation());
 		
 		//Nested IFs of Hell
-		if(distance > spawn_distance_0_10) {
+		if(distance <= Level_01_30) {
 			// Max Level 1 - 30
 			if(rng <= 60) {
 				//60% Chance
@@ -78,7 +78,7 @@ public class Utils {
 				//Spawn Boss # 1% Chance
 				return 100;
 			}
-		}else if(distance > spawn_distance_0_10) {
+		}else if(distance > Level_01_30 && distance <= Level_11_40) {
 			// Max Level 11 - 40
 			if(rng <= 60) {
 				//60% Chance
@@ -93,7 +93,7 @@ public class Utils {
 				//Spawn Boss # 1% Chance
 				return 100;
 			}
-		}else if(distance > spawn_distance_10_20) {
+		}else if(distance > Level_11_40 && distance <= Level_21_50) {
 			// Max Level 21 - 50
 			if(rng <= 60) {
 				//60% Chance
@@ -108,7 +108,7 @@ public class Utils {
 				//Spawn Boss # 1% Chance
 				return 100;
 			}
-		}else if(distance > spawn_distance_20_30) {
+		}else if(distance > Level_21_50 && distance <= Level_31_60) {
 			// Max Level 31 - 60
 			if(rng <= 60) {
 				//60% Chance
@@ -123,7 +123,7 @@ public class Utils {
 				//Spawn Boss # 1% Chance
 				return 100;
 			}
-		}else if(distance > spawn_distance_30_40) {
+		}else if(distance > Level_31_60 && distance <= Level_41_70) {
 			// Max Level 41 - 70
 			if(rng <= 60) {
 				//60% Chance
@@ -138,7 +138,7 @@ public class Utils {
 				//Spawn Boss # 1% Chance
 				return 100;
 			}
-		}else if(distance > spawn_distance_40_50) {
+		}else if(distance > Level_41_70 && distance <= Level_51_80) {
 			// Max Level 51 - 80
 			if(rng <= 60) {
 				//60% Chance
@@ -153,7 +153,7 @@ public class Utils {
 				//Spawn Boss # 1% Chance
 				return 100;
 			}
-		}else if(distance > spawn_distance_50_60) {
+		}else if(distance > Level_51_80 && distance <= Level_61_90) {
 			// Max Level 61 - 90
 			if(rng <= 60) {
 				//60% Chance
@@ -168,7 +168,7 @@ public class Utils {
 				//Spawn Boss # 1% Chance
 				return 100;
 			}
-		}else if(distance > spawn_distance_60_70) {
+		}else if(distance > Level_61_90 && distance <= Level_71_99) {
 			// Max Level 71 - 99
 			if(rng <= 60) {
 				//60% Chance
@@ -183,13 +183,16 @@ public class Utils {
 				//Spawn Boss # 1% Chance
 				return 100;
 			}
-		}else if(distance > spawn_distance_70_80) {
-			// Max Level 81 - 99
+		}else if(distance >= Level_71_99) {
+			// Max Level 71 - 99
 			if(rng <= 60) {
 				//60% Chance
+				return (71 + generateRandom(0, 9));
+			}else if(rng > 60 && rng <= 85) {
+				//25% Chance
 				return (81 + generateRandom(0, 9));
-			}else if(rng > 60 && rng <= 99) {
-				//39% Chance
+			}else if(rng > 85 && rng <= 99) {
+				//14% Chance
 				return (91 + generateRandom(0, 9));
 			}else if (rng == 100) {
 				//Spawn Boss # 1% Chance

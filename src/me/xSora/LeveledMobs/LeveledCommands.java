@@ -44,6 +44,11 @@ public class LeveledCommands implements CommandExecutor{
 							p.sendMessage("not enough args");
 						}
 					}
+					if(comm1.equalsIgnoreCase("distance")) {
+						int dist = (int) p.getWorld().getSpawnLocation().distance(p.getLocation());
+						p.sendMessage(""+dist);
+					}
+					
 				}
 			}
 			

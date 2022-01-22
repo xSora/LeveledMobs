@@ -1,5 +1,6 @@
 package me.xSora.LeveledMobs;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -21,10 +22,16 @@ public class MobKilledListener implements Listener{
 			Player p = (Player) killer;
 			EntityType et = target.getType();
 			if(CreaturesList.leveledMobs.contains(et)) {
-				if(target.getCustomName() != null) {
-					String str_level = target.getCustomName().substring(target.getCustomName().indexOf("Level")).replaceAll("Level ", "").replaceAll("§k§c", "");
-					int level = Integer.parseInt(str_level);
-					MoneyManager.givePlayerMoney(p, ev.getEntity(), level);
+				if(target.getCustomName().contains("Level")) {
+					String str_level = target.getCustomName().substring(target.getCustomName().indexOf("Level")).replaceAll("Level ", "");
+					if(str_level == "§c§k100") {
+						//Boss Mob
+						MoneyManager.givePlayerMoney(p, ev.getEntity(), 100);
+						Bukkit.broadcastMessage("§c"+p.getName()+ " §bdefeated a boss!");
+					}else {
+						int level = Integer.parseInt(str_level);
+						MoneyManager.givePlayerMoney(p, ev.getEntity(), level);
+					}
 				}
 			}
 		}
